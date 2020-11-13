@@ -1,5 +1,5 @@
 Execute,TestScenario,TestCase,Iteration,Status,Browser,BrowserVersion,Platform
-true,Demo,TestCase_001,Single,Passed,Chrome,Default,Any
-true,Demo,TestCase_002,Single,Passed,Chrome,Default,Any
-true,Demo,TestCase_003,Single,Passed,Chrome,Default,Any
-true,Demo,TestCase_004,Single,Passed,Chrome,Default,Any
+true,Demo,TestCase_001,Single,Passed,Chrome Headless,Default,Any
+true,Demo,TestCase_002,Single,Passed,Chrome Headless,Default,Any
+true,Demo,TestCase_003,Single,Passed,Chrome Headless,Default,Any
+true,Demo,TestCase_004,Single,Passed,Chrome Headless,Default,Any
