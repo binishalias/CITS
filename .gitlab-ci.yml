@@ -2,4 +2,4 @@ demo_job1:
      tags:
        - ci
      script:
-       - echo Hello World
+       - Run.bat -run -project_location "Projects/Docker" -release "Release" -testset "Demo"
