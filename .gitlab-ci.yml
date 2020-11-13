@@ -2,4 +2,4 @@ demo_job1:
      tags:
        - ci
      script:
-       - Run.bat -run -project_location "Projects/Docker" -release "Release" -testset "Demo"
+       - C:/GitLab-Runner/builds/G79vX8fA/0/binishalias/CITS/Run.bat -run -project_location "Projects/Docker" -release "Release" -testset "Demo"
