@@ -1,0 +1,191 @@
+Run Information
+========================
+cognizant.intelligent.test.scripter.engine : ${project.version}
+java.runtime.name    : Java(TM) SE Runtime Environment
+java.version         : 11.0.6
+java.home            : C:\Program Files\Java\jdk-11.0.6
+os.name              : Windows 10
+os.arch              : amd64
+os.version           : 10.0
+file.encoding        : UTF-8
+========================
+Run Started on Fri Nov 13 11:24:00 CET 2020
+Loading Browser Profile
+Loading RunManager
+[Scenario:Demo] [TestCase: TestCase_001] [Description: TestCase_001] [Browser: Chrome] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+[Scenario:Demo] [TestCase: TestCase_002] [Description: TestCase_002] [Browser: Chrome] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+[Scenario:Demo] [TestCase: TestCase_003] [Description: TestCase_003] [Browser: Chrome] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+[Scenario:Demo] [TestCase: TestCase_004] [Description: TestCase_004] [Browser: Chrome] [BrowserVersion: Default] [Platform: ANY][ExistingBrowser: false]
+----------------------------------------------------------
+[4] TestCases selected for execution from [//Release/Demo]
+----------------------------------------------------------
+Initializing Report
+ApiLink not available!!
+Run Manager true
+Continue Execution true
+Shutting Down Thread as there is no need for SelectiveThreading
+Inside Task Run
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 38064
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2020-11-13 11:24:07:11S +0100 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.google.com/ | Conditon:  | @13-Nov-2020 11:24:07.007
+[DONE]   | Opened Url: https://www.google.com/
+
+===================================================================================================
+
+Step:2   | Object: Browser | Action: waitForPageLoaded | Input:  | Conditon:  | @13-Nov-2020 11:24:09.009
+[DONE]   | Page load completed in stipulated time
+
+===================================================================================================
+
+Step:3   | Object: Browser | Action: maximize | Input:  | Conditon:  | @13-Nov-2020 11:24:09.009
+[DONE]   |  Window is maximized 
+
+===================================================================================================
+
+Step:4   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @13-Nov-2020 11:24:11.011
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Demo:TestCase_001
+Executed Steps       : 4
+Passed Steps         : 4
+Failed Steps         : 0
+Time Taken           : 00:00:11
+-----------------------------------------------------
+
+Inside Task Run
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 16808
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2020-11-13 11:24:16:11S +0100 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://www.google.be/maps | Conditon:  | @13-Nov-2020 11:24:16.016
+[DONE]   | Opened Url: https://www.google.be/maps
+
+===================================================================================================
+
+Step:2   | Object: Browser | Action: waitForPageLoaded | Input:  | Conditon:  | @13-Nov-2020 11:24:18.018
+[DONE]   | Page load completed in stipulated time
+
+===================================================================================================
+
+Step:3   | Object: Browser | Action: maximize | Input:  | Conditon:  | @13-Nov-2020 11:24:18.018
+[DONE]   |  Window is maximized 
+
+===================================================================================================
+
+Step:4   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @13-Nov-2020 11:24:21.021
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Demo:TestCase_002
+Executed Steps       : 4
+Passed Steps         : 4
+Failed Steps         : 0
+Time Taken           : 00:00:11
+-----------------------------------------------------
+
+Inside Task Run
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 38103
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2020-11-13 11:24:28:11S +0100 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://gitlab.com/dashboard/projects | Conditon:  | @13-Nov-2020 11:24:28.028
+[DONE]   | Opened Url: https://gitlab.com/dashboard/projects
+
+===================================================================================================
+
+Step:2   | Object: Browser | Action: waitForPageLoaded | Input:  | Conditon:  | @13-Nov-2020 11:24:28.028
+[DONE]   | Page load completed in stipulated time
+
+===================================================================================================
+
+Step:3   | Object: Browser | Action: maximize | Input:  | Conditon:  | @13-Nov-2020 11:24:29.029
+[DONE]   |  Window is maximized 
+
+===================================================================================================
+
+Step:4   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @13-Nov-2020 11:24:31.031
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Demo:TestCase_003
+Executed Steps       : 4
+Passed Steps         : 4
+Failed Steps         : 0
+Time Taken           : 00:00:07
+-----------------------------------------------------
+
+Inside Task Run
+Running Iteration 1
+Launching Chrome
+Launching Local Driver
+Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 35957
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+2020-11-13 11:24:36:11S +0100 [INFO] org.openqa.selenium.remote.ProtocolHandshake createSession:Detected dialect: W3C
+Chrome Launched
+Step:1   | Object: Browser | Action: Open | Input: @https://github.com/ | Conditon:  | @13-Nov-2020 11:24:36.036
+[DONE]   | Opened Url: https://github.com/
+
+===================================================================================================
+
+Step:2   | Object: Browser | Action: waitForPageLoaded | Input:  | Conditon:  | @13-Nov-2020 11:24:38.038
+[DONE]   | Page load completed in stipulated time
+
+===================================================================================================
+
+Step:3   | Object: Browser | Action: maximize | Input:  | Conditon:  | @13-Nov-2020 11:24:39.039
+[DONE]   |  Window is maximized 
+
+===================================================================================================
+
+Step:4   | Object: Browser | Action: takeScreenshot | Input:  | Conditon:  | @13-Nov-2020 11:24:41.041
+[PASS]   | Screenshot is taken
+
+===================================================================================================
+
+
+---------------------------------------------------
+Testcase Name        : Demo:TestCase_004
+Executed Steps       : 4
+Passed Steps         : 4
+Failed Steps         : 0
+Time Taken           : 00:00:10
+-----------------------------------------------------
+
+Run Finished on Fri Nov 13 11:24:42 CET 2020
+-----------------------------------------------------
+ExecutionDate        : 13-Nov-2020 11-24-00
+Executed TestCases   : 4
+Passed TestCases     : 4
+Failed TestCases     : 0
+Time Taken           : 00:00:40
+ReportPath           : file:///C:\DevOps\Projects\Docker\Results\TestExecution\Release\Demo\13-Nov-2020 11-24-00\summary.html
+-----------------------------------------------------
