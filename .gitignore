@@ -1,0 +1,7 @@
+*.class
+log.txt
+Jenkins/
+GridNode/
+Extensions/
+logs/
+Projects/Docker/Results
