@@ -42,18 +42,26 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
@@ -218,7 +226,8 @@ public final class SummaryReport implements OverviewReport {
 
     public void afterReportComplete() throws Exception {
         if (!RunManager.getGlobalSettings().isTestRun()) {
-
+        	
+        	createjunitReport(String.valueOf(FilePath.getLatestResultsLocation()) + "/data.js");
             String current_release = RunManager.getGlobalSettings().getRelease();
 
             String current_testset = RunManager.getGlobalSettings().getTestSet();
@@ -446,5 +455,168 @@ public final class SummaryReport implements OverviewReport {
             pHandler = (PrimaryHandler) summaryHandler;
         }
     }
-
+    
+    static void createjunitReport(final String datajspath) throws IOException, ParseException, java.text.ParseException {
+        final File datajs = new File(datajspath);
+        final StringBuilder sb = new StringBuilder();
+        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+        sb.append("<testsuites name=\"" + getsuitesName(datajs) + "\" tests=\"" + getTotalTests(datajs) + "\" failures=\"" + getfailed(datajs) + "\" time=\"" + getTotalexetime(datajs) + "\">" + "\n");
+        getTestCases(datajs, sb);
+        sb.append("</testsuites>");
+        final File file = new File(String.valueOf(FilePath.getLatestResultsLocation()) + "/junit.xml");
+        Throwable t = null;
+        try {
+            final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            try {
+                writer.write(sb.toString());
+            }
+            finally {
+                if (writer != null) {
+                    writer.close();
+                }
+            }
+        }
+        finally {
+            if (t == null) {
+                final Throwable exception = null;
+                t = exception;
+            }
+            else {
+                final Throwable exception = null;
+                if (t != exception) {
+                    t.addSuppressed(exception);
+                }
+            }
+        }
+    }
+    
+    static String getfailed(final File datajs) throws IOException, ParseException {
+        String str = "";
+        if (datajs.exists()) {
+            final String jstr = FileUtils.readFileToString(datajs).replaceFirst("var DATA=", "");
+            str = jstr.substring(0, jstr.length() - 1);
+            final JSONParser parser = new JSONParser();
+            final JSONObject json = (JSONObject)parser.parse(str);
+            final Object failed = json.get((Object)"nofailTests").toString();
+            str = (String)failed;
+        }
+        return str;
+    }
+    
+    static String getTotalexetime(final File datajs) throws IOException, ParseException, java.text.ParseException {
+        String str = "";
+        if (datajs.exists()) {
+            final String jstr = FileUtils.readFileToString(datajs).replaceFirst("var DATA=", "");
+            str = jstr.substring(0, jstr.length() - 1);
+            final JSONParser parser = new JSONParser();
+            final JSONObject json = (JSONObject)parser.parse(str);
+            final Object start = json.get((Object)"startTime").toString();
+            final Object end = json.get((Object)"endTime").toString();
+            final SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss.SSS");
+            final Date date1 = format.parse((String)start);
+            final Date date2 = format.parse((String)end);
+            final long diff = (date2.getTime() - date1.getTime()) / 1000L;
+            str = Long.toString(diff);
+        }
+        return str;
+    }
+    
+    static String getTotalTests(final File datajs) throws IOException, ParseException {
+        String str = "";
+        if (datajs.exists()) {
+            final String jstr = FileUtils.readFileToString(datajs).replaceFirst("var DATA=", "");
+            str = jstr.substring(0, jstr.length() - 1);
+            final JSONParser parser = new JSONParser();
+            final JSONObject json = (JSONObject)parser.parse(str);
+            final Object tests = json.get((Object)"noTests").toString();
+            str = (String)tests;
+        }
+        return str;
+    }
+    
+    static String getsuitesName(final File datajs) throws IOException, ParseException {
+        String str = "";
+        if (datajs.exists()) {
+            final String jstr = FileUtils.readFileToString(datajs).replaceFirst("var DATA=", "");
+            str = jstr.substring(0, jstr.length() - 1);
+            final JSONParser parser = new JSONParser();
+            final JSONObject json = (JSONObject)parser.parse(str);
+            final Object relName = json.get((Object)"releaseName");
+            str = (String)relName;
+        }
+        return str;
+    }
+    
+    static void getTestCases(final File datajs, StringBuilder sb) throws IOException, ParseException, java.text.ParseException {
+        String str = "";
+        if (datajs.exists()) {
+            final String jstr = FileUtils.readFileToString(datajs).replaceFirst("var DATA=", "");
+            str = jstr.substring(0, jstr.length() - 1);
+            final JSONParser parser = new JSONParser();
+            final JSONObject json = (JSONObject)parser.parse(str);
+            final JSONArray exec = (JSONArray)json.get((Object)"EXECUTIONS");
+            final SimpleDateFormat targetformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            final SimpleDateFormat sourceformat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss.SSS");
+            for (int i = 0; i < exec.size(); ++i) {
+                final JSONObject objects = (JSONObject)exec.get(i);
+                final Date date1 = sourceformat.parse((String)objects.get((Object)"startTime"));
+                final Date date2 = sourceformat.parse((String)objects.get((Object)"endTime"));
+                final long diff = (date2.getTime() - date1.getTime()) / 1000L;
+                final String exetime = Long.toString(diff);
+                sb.append("<testsuite name=\"Scenario : " + objects.get((Object)"scenarioName") + ", Test Case : " + objects.get((Object)"testcaseName") + "\" id=\"" + UUID.randomUUID() + "\" timestamp=\"" + targetformat.format(date1) + "\" tests=\"" + objects.get((Object)"noTests") + "\" failures=\"" + objects.get((Object)"nofailTests") + "\" errors=\"0\" time=\"" + exetime + "\">" + "\n");
+                sb = getTestSteps(datajs, sb, objects.get((Object)"scenarioName").toString(), objects.get((Object)"testcaseName").toString());
+                sb.append("</testsuite>\n");
+            }
+        }
+    }
+    
+    static StringBuilder getTestSteps(final File datajs, final StringBuilder sb, final String scenario, final String testcase) throws IOException, ParseException {
+        String str = "";
+        if (datajs.exists()) {
+            final String jstr = FileUtils.readFileToString(datajs).replaceFirst("var DATA=", "");
+            str = jstr.substring(0, jstr.length() - 1);
+            final JSONParser parser = new JSONParser();
+            final JSONObject json = (JSONObject)parser.parse(str);
+            final JSONArray exec = (JSONArray)json.get((Object)"EXECUTIONS");
+            for (int i = 0; i < exec.size(); ++i) {
+                final JSONObject objects = (JSONObject)exec.get(i);
+                if (objects.get((Object)"scenarioName").equals(scenario) && objects.get((Object)"testcaseName").equals(testcase)) {
+                    final JSONArray steps = (JSONArray)objects.get((Object)"STEPS");
+                    final JSONObject stepdata1 = (JSONObject)steps.get(0);
+                    final JSONArray stepdata2 = (JSONArray)stepdata1.get((Object)"data");
+                    for (int j = 0; j < stepdata2.size(); ++j) {
+                        final JSONObject object = (JSONObject)stepdata2.get(j);
+                        if (object.get((Object)"type").equals("reusable")) {
+                            final JSONArray reusabledetails = (JSONArray)object.get((Object)"data");
+                            final JSONObject reusabledetails2 = (JSONObject)reusabledetails.get(0);
+                            final JSONObject reusabledetails3 = (JSONObject)reusabledetails2.get((Object)"data");
+                            if (reusabledetails3.get((Object)"status").toString().equals("PASS") || reusabledetails3.get((Object)"status").toString().equals("DONE")) {
+                                sb.append("<testcase name=\"" + reusabledetails3.get((Object)"stepName") + " : " + reusabledetails3.get((Object)"description").toString().replace("<", "&lt;").replace(">", "&gt;") + "\" time=\"" + reusabledetails3.get((Object)"tStamp") + "\" classname=\"Scenario : " + scenario + ", Test Case : " + testcase + "\"/>" + "\n");
+                            }
+                            else {
+                                sb.append("<testcase name=\"" + reusabledetails3.get((Object)"stepName") + "\" time=\"" + reusabledetails3.get((Object)"tStamp") + "\" classname=\"Scenario : " + scenario + ", Test Case : " + testcase + "\">" + "\n");
+                                sb.append("<failure type=\"Step Level Failure\" message=\"" + reusabledetails3.get((Object)"description").toString().replace("<", "&lt;").replace(">", "&gt;") + "\">");
+                                sb.append("</failure>\n");
+                                sb.append("</testcase>\n");
+                            }
+                        }
+                        else if (object.get((Object)"type").equals("step")) {
+                            final JSONObject stepdetails = (JSONObject)object.get((Object)"data");
+                            if (stepdetails.get((Object)"status").toString().equals("PASS") || stepdetails.get((Object)"status").toString().equals("DONE")) {
+                                sb.append("<testcase name=\"" + stepdetails.get((Object)"stepName") + " : " + stepdetails.get((Object)"description").toString().replace("<", "&lt;").replace(">", "&gt;") + "\" time=\"" + stepdetails.get((Object)"tStamp") + "\" classname=\"Scenario : " + scenario + ", Test Case : " + testcase + "\"/>" + "\n");
+                            }
+                            else {
+                                sb.append("<testcase name=\"" + stepdetails.get((Object)"stepName") + "\" time=\"" + stepdetails.get((Object)"tStamp") + "\" classname=\"Scenario : " + scenario + ", Test Case : " + testcase + "\">" + "\n");
+                                sb.append("<failure type=\"Step Level Failure\" message=\"" + stepdetails.get((Object)"description").toString().replace("<", "&lt;").replace(">", "&gt;") + "\">");
+                                sb.append("</failure>\n");
+                                sb.append("</testcase>\n");
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return sb;
+    }
 }
