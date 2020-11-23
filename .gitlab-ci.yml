@@ -2,8 +2,8 @@ demo_job1:
      tags:
        - ci
      script:
-       - builds/G79vX8fA/0/binishalias/CITS/Run.bat -run -project_location "Projects/Docker" -release "Release" -testset "Demo"
+       - C:/GitLab-Runner/builds/G79vX8fA/0/binishalias/CITS/Run.bat -run -project_location "Projects/Docker" -release "Release" -testset "Demo"
      artifacts:
         when: always
         reports:
-            junit: builds/G79vX8fA/0/binishalias/CITS/Projects/Docker/Results/TestExecution/Release/Demo/Latest/junit.xml
+            junit: C:/GitLab-Runner/builds/G79vX8fA/0/binishalias/CITS/Projects/Docker/Results/TestExecution/Release/Demo/Latest/junit.xml
