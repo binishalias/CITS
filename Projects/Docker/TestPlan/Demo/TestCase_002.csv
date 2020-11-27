@@ -1,5 +1,8 @@
 Step,ObjectName,Description,Action,Input,Condition,Reference
-1,Browser,Open the Url [<Data>] in the Browser,Open,@https://www.google.be/maps,,
+1,Browser,Open the Url [<Data>] in the Browser,Open,@https://www.amazon.de,,
 2,Browser,Wait for Page to be loaded,waitForPageLoaded,,,
-3,Browser,Maximize the browser.,maximize,,,
-4,Browser,"Take a Screen Shot ",takeScreenshot,,,
+3,txt_Search,"Take a Screen Shot ",verifyElementDisplayed,,,pge_Amazon
+4,txt_Search,Enter the value [<Data>] in the Field [<Object>],Set,@amazon echo dot,,pge_Amazon
+5,btn_Search,"Click the [<Object>] ",Click,,,pge_Amazon
+6,Browser,Wait for Page to be loaded,waitForPageLoaded,,,
+7,lst_Sort,Verify if [<Object>] element is displayed,verifyElementDisplayed,,,pge_Amazon

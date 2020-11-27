@@ -1,1 +1,40 @@
-<Root type="OR" ref="Docker"/>
+<Root type="OR" ref="Docker">
+  <Page title="" ref="pge_Amazon">
+    <ObjectGroup ref="txt_Search">
+      <Object frame="" ref="txt_Search">
+        <Property value="" ref="name" pref="1"/>
+        <Property value="twotabsearchtextbox" ref="id" pref="2"/>
+        <Property value="" ref="link_text" pref="3"/>
+        <Property value="" ref="relative_xpath" pref="4"/>
+        <Property value="" ref="xpath" pref="5"/>
+        <Property value="" ref="class" pref="6"/>
+        <Property value="" ref="css" pref="7"/>
+        <Property value="" ref="type" pref="8"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="btn_Search">
+      <Object frame="" ref="btn_Search">
+        <Property value="" ref="name" pref="1"/>
+        <Property value="" ref="id" pref="2"/>
+        <Property value="" ref="link_text" pref="3"/>
+        <Property value="" ref="relative_xpath" pref="4"/>
+        <Property value="//*[@id=&quot;nav-search-submit-text&quot;]/input" ref="xpath" pref="5"/>
+        <Property value="" ref="class" pref="6"/>
+        <Property value="" ref="css" pref="7"/>
+        <Property value="" ref="type" pref="8"/>
+      </Object>
+    </ObjectGroup>
+    <ObjectGroup ref="lst_Sort">
+      <Object frame="" ref="lst_Sort">
+        <Property value="" ref="name" pref="1"/>
+        <Property value="" ref="id" pref="2"/>
+        <Property value="" ref="link_text" pref="3"/>
+        <Property value="" ref="relative_xpath" pref="4"/>
+        <Property value="//*[@id=&quot;a-autoid-2-announce&quot;]" ref="xpath" pref="5"/>
+        <Property value="" ref="class" pref="6"/>
+        <Property value="" ref="css" pref="7"/>
+        <Property value="" ref="type" pref="8"/>
+      </Object>
+    </ObjectGroup>
+  </Page>
+</Root>
