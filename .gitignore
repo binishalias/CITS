@@ -1,3 +1,7 @@
+*.class
+log.txt
+hs_err_pid13380.log
+Installation.md
 LICENSE
 Engine/
 Extensions/
@@ -8,5 +12,3 @@ Projects/*/Results/*/
 web/
 recent.items
 log.txt
-*.class
-TMP
